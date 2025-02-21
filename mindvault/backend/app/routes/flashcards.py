@@ -1,14 +1,12 @@
+import random
+import os
 from fastapi import APIRouter, HTTPException, UploadFile, File
 from app.database import flashcards_collection
-from app.models import Flashcard
 from app.pdf_extractor import extract_text_from_pdf
 from bson import ObjectId
-from datetime import datetime
-import asyncio
 
 router = APIRouter()
 
-# ✅ Upload a PDF and extract flashcards
 @router.post("/upload/")
 async def upload_pdf(user_id: int, file: UploadFile = File(...)):
     content = await file.read()
@@ -18,37 +16,33 @@ async def upload_pdf(user_id: int, file: UploadFile = File(...)):
         f.write(content)
 
     extracted_text = extract_text_from_pdf(pdf_path)
-    questions = extracted_text.split("\n")  # Simple split; refine as needed
+    os.remove(pdf_path)  # ✅ Cleanup file
+
+    questions = extracted_text.split("\n")
 
     flashcards = []
-    for i in range(0, len(questions) - 1, 2):  # Assuming Q/A pairs
+    for i in range(0, len(questions) - 1, 2):  
+        question = questions[i]
+        correct_answer = questions[i + 1] if i + 1 < len(questions) else "N/A"
+
+        # ✅ Generate 3 wrong options randomly from other answers
+        all_answers = [questions[j] for j in range(1, len(questions), 2) if j != i + 1]
+        wrong_options = random.sample(all_answers, min(3, len(all_answers)))
+
+        options = wrong_options + [correct_answer]  # 3 wrong + 1 correct
+        random.shuffle(options)  # Shuffle for randomness
+
         flashcard = {
             "user_id": user_id,
             "topic": "Extracted",
-            "question": questions[i],
-            "answer": questions[i + 1] if i + 1 < len(questions) else "N/A",
+            "question": question,
+            "options": options,
+            "correct_option_index": options.index(correct_answer),  # ✅ Store correct index
             "difficulty": "Medium",
-            "mode": "normal",
+            "mode": "mcq",
             "next_review": None
         }
         flashcards.append(flashcard)
     
     await flashcards_collection.insert_many(flashcards)
-    return {"message": "Flashcards extracted and stored", "count": len(flashcards)}
-
-# ✅ Get Flashcards for a User
-@router.get("/{user_id}")
-async def get_flashcards(user_id: int):
-    flashcards = await flashcards_collection.find({"user_id": user_id}).to_list(100)
-    return {"flashcards": flashcards}
-
-# ✅ Quiz Mode: Check User Answer
-@router.post("/quiz/")
-async def check_answer(flashcard_id: str, user_answer: str):
-    flashcard = await flashcards_collection.find_one({"_id": ObjectId(flashcard_id)})
-
-    if not flashcard:
-        raise HTTPException(status_code=404, detail="Flashcard not found")
-
-    correct = flashcard["answer"].strip().lower() == user_answer.strip().lower()
-    return {"correct": correct, "correct_answer": flashcard["answer"]}
+    return {"message": "MCQ Flashcards extracted and stored", "count": len(flashcards)}
