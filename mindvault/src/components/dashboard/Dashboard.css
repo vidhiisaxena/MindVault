@@ -1,8 +1,88 @@
+/* Dark Theme Styles */
 .dashboard {
-  background-color: #000;
+  background-color: #121212; /* Dark background */
+  color: #f8f9fa; /* Light text */
   min-height: 100vh;
+  padding: 20px;
 }
 
+/* Sidebar */
 .sidebar {
+  background: linear-gradient(90deg, #007bff, #ff416c); /* Gradient Sidebar */
+  color: white;
   height: 100vh;
+}
+
+.sidebar h4 {
+  font-weight: bold;
+}
+
+.sidebar .list-group-item {
+  background-color: transparent;
+  color: white;
+  border: none;
+}
+
+.sidebar .list-group-item:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Cards */
+.card {
+  background-color: #1e1e1e !important; /* Dark card background */
+  color: white !important; /* Light text */
+  border-radius: 10px;
+}
+
+/* Gradient Card Headers */
+.card-title {
+  background: linear-gradient(90deg, #007bff, #ff416c);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Profile Section */
+.profile-container {
+  background-color: #222;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+/* Buttons */
+.btn-primary {
+  background: linear-gradient(90deg, #007bff, #ff416c);
+  border: none;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(90deg, #ff416c, #007bff);
+}
+
+/* Calendar */
+.calendar-card {
+  background-color: #1e1e1e !important;
+}
+
+.custom-calendar {
+  background: #222;
+  padding: 10px;
+  border-radius: 8px;
+  color: white;
+}
+
+/* List Items */
+.list-group-item {
+  background-color: #1e1e1e !important;
+  color: white !important;
+  border: 1px solid #343a40;
+}
+
+.list-group-item:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Reminders */
+.reminders-card {
+  background-color: #1e1e1e;
+  border-radius: 10px;
 }

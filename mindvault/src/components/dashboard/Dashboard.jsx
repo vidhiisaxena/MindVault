@@ -1,6 +1,9 @@
 import React from "react";
 import { Container, Row, Col, Card, Button, ListGroup } from "react-bootstrap";
-import Calendar from "../elements/calender/calender";
+import Calendar from "react-calendar";
+import "react-calendar/dist/Calendar.css";
+import "./Dashboard.css";
+
 const Dashboard = () => {
   return (
     <Container fluid className="dashboard">
@@ -73,7 +76,7 @@ const Dashboard = () => {
         </Col>
 
         {/* Right Sidebar */}
-        <Col md={3} className="bg-light p-4">
+        <Col md={3} className=" p-4">
           <div className="text-center">
             <img
               src="mindvault\public\images\profile.avif"
@@ -86,15 +89,12 @@ const Dashboard = () => {
             </Button>
           </div>
 
-          {/* Calendar Placeholder */}
-          <Card className="mt-3 p-3">
-            <h6>December 2022</h6>
-            <div className="container">
-              <div className="row justify-content-center">
-                <div className="col-md-16">
-                  <Calendar />
-                </div>
-              </div>
+          
+          {/* Calendar Section */}
+          <Card className="mt-3 p-3 calendar-card">
+            <h6>📅 Calendar</h6>
+            <div className="calendar-container">
+              <Calendar className="custom-calendar" />
             </div>
           </Card>
 
