@@ -77,12 +77,13 @@ const Dashboard = () => {
 
         {/* Right Sidebar */}
         <Col md={3} className=" p-4">
-          <div className="text-center">
-            <img
-              src="mindvault\public\images\profile.avif"
-              alt="Profile"
-              className="rounded-circle mb-2"
-            />
+        <div className="profile-container text-center">
+            <div className="profile-image">
+              <img
+                src={`${process.env.PUBLIC_URL}/images/avatar.jpg`}
+                alt="Profile"
+              />
+            </div>
             <h6>Advika</h6>
             <Button variant="outline-primary" size="sm">
               Profile

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import Flashcard from "./flashcard";
-import "./flashcardlist.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "./flashcardlist.css";
+import Flashcard from "./flashcard";
 
 const FlashcardList = () => {
   const cards = [
@@ -12,27 +12,48 @@ const FlashcardList = () => {
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [flipped, setFlipped] = useState(false);
+  const [difficulty, setDifficulty] = useState(null);
 
-  const handleFlip = () => setFlipped(true);
-  const handleHide = () => setFlipped(false);
-
+  const handleFlip = () => setFlipped(!flipped);
   const handleNext = () => {
-    setFlipped(false); // Reset flip state
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % cards.length); // Move to the next card
+    setFlipped(false);
+    setDifficulty(null);
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % cards.length);
+  };
+  const handleFlag = (level) => {
+    setDifficulty(level);
+    console.log(`Card flagged as: ${level}`);
   };
 
   return (
-    <div className="flashcard-list">
+    <div className="flashcard-container">
       <Flashcard 
         question={cards[currentIndex].question} 
         answer={cards[currentIndex].answer} 
         flipped={flipped}
         onFlip={handleFlip}
-        onHide={handleHide}
       />
-      <button id="nextq" className="btn btn-primary mt-3" onClick={handleNext}>
-        Next Question
-      </button>
+      <div className="buttons-container">
+        <button
+          className={`flag-button ${difficulty === "Easy" ? "easy" : ""}`}
+          onClick={() => handleFlag("Easy")}
+        >
+          Easy
+        </button>
+        <button
+          className={`flag-button ${difficulty === "Medium" ? "medium" : ""}`}
+          onClick={() => handleFlag("Medium")}
+        >
+          Medium
+        </button>
+        <button
+          className={`flag-button ${difficulty === "Hard" ? "hard" : ""}`}
+          onClick={() => handleFlag("Hard")}
+        >
+          Hard
+        </button>
+      </div>
+      <button className="next-button" onClick={handleNext}>Next</button>
     </div>
   );
 };
