@@ -1,7 +1,7 @@
 from motor.motor_asyncio import AsyncIOMotorClient
-import os
+from app.config import MONGO_URI
 
-MONGO_URI = os.getenv("MONGO_URI")
 client = AsyncIOMotorClient(MONGO_URI)
 db = client["flashcardDB"]
 flashcards_collection = db["flashcards"]
+
