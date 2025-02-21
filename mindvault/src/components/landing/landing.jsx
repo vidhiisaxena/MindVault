@@ -3,6 +3,7 @@ import { Container, Navbar, Nav, Button } from "react-bootstrap";
 // import {LoginPage} from "../signup/login";
 import "./landing.css"; 
 // import {Dashboard} from "../dashboard/Dashboard";
+import Feature from "./features";
 
 export default function LandingPage() {
   return (
@@ -37,10 +38,12 @@ export default function LandingPage() {
           Maximize your coding potential with AI-powered learning and
           interview prep.
         </p>
-        <Button variant="light" className="cta-button">
+        <Button variant="light" className="cta-button" href="#feature">
           Unleash the Powers of you Mind
         </Button>
       </Container>
+
+      <Feature />
     </div>
   );
 }

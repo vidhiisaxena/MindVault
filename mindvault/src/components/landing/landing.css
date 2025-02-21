@@ -2,16 +2,31 @@
 .landing-page {
   background-color: #000 !important;
   color: white;
-  height: 100vh;
+  /* height: 100vh; */
   display: flex;
   flex-direction: column;
+  overflow-y: auto;
+  scrollbar-width: none;  /* Hides scrollbar in Firefox */
+  -ms-overflow-style: none;
+}
+::-webkit-scrollbar {
+  display: none; /* Hides scrollbar in Chrome, Safari */
 }
 
 /* Navbar Customization */
 .navbar {
-  padding: 20px 0;
+  position: fixed; /* Sticks navbar to the top */
+  display: flex;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000; /* Ensures it's above other elements */
+  background-color: #000; /* Adjust background color if needed */
+  padding: 10px 0;
 }
-
+.landing-page {
+  padding-top: 70px; /* Prevents content from being hidden behind navbar */
+}
 #navbtn {
   background-color: transparent;
   margin-right: 10px;
@@ -32,6 +47,7 @@
 /* Hero Section */
 .hero-section {
   flex: 1;
+  padding: 150px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -57,13 +73,14 @@
 .element.logo {
   position: absolute;
   inset: 0;
-  /* display: inline-block; */
+  display: flex;
   width: 400px; 
   /* height: auto; */
   background: url(./MindVault.png);
   background-size: 60%;
   background-repeat: no-repeat;
   vertical-align: middle;
+  cursor: pointer;
 }
 .element-title {
   position: absolute;
@@ -73,7 +90,7 @@
 
 .cta-button {
   font-size: 1.2rem;
-  width:50%;
+  width:75%;
   padding: 10px 20px;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2);
