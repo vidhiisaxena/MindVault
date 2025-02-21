@@ -18,15 +18,15 @@ export default function LoginPage() {
     <div className="login-page">
         <div className="login-container">
             <div ref={tiltRef} className="box">
-                    <div className="elements untoldcoding"></div>
+                    <div className="elements logo"></div>
                         <div className="elements name">
-                        <h2>Login Page</h2>
+                        <h2>Login</h2>
                         </div>
                         <div className="elements content">
                             <form>
                                 <input type="text" placeholder="email" />
                                 <input type="password" placeholder="password" />
-                                <button>Login</button>
+                                <button className="login">Login</button>
                             </form>
                         </div>
                 <div className="card"></div>
