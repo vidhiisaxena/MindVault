@@ -31,7 +31,7 @@ const Dashboard = () => {
           <Card className="p-4 shadow-sm">
             <h5>Welcome back, Advika!</h5>
             <p>Continue where you left off, explore new insights, or dive into your latest projects.</p>
-            <Button variant="primary">Buy Lesson</Button>
+            <Button id="buybtn" variant="primary">Buy Lesson</Button>
           </Card>
 
           {/* Classes Section */}

@@ -49,12 +49,12 @@
 }
 
 /* Buttons */
-.btn-primary {
+#buybtn {
   background: linear-gradient(90deg, #007bff, #ff416c);
   border: none;
 }
 
-.btn-primary:hover {
+#buybtn:hover {
   background: linear-gradient(90deg, #ff416c, #007bff);
 }
 

@@ -24,6 +24,11 @@
   background-color: grey;
 }
 
+/* .signup-btn {
+  font-weight: bold;
+  border-radius: 10px;
+} */
+
 /* Hero Section */
 .hero-section {
   flex: 1;
@@ -40,10 +45,8 @@
 
 .grad-text {
   background: linear-gradient(90deg, #007bff, #ff416c);
-  background-clip: text; /* Standard property */
-  -webkit-background-clip: text; /* For Safari and Chrome */
-  -webkit-text-fill-color: transparent; /* Ensures text takes gradient color */
-  color: transparent; /* Standard property for fallback */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .hero-subtext {
@@ -51,17 +54,17 @@
   max-width: 500px;
   margin: 10px 0 20px;
 }
-
 .element.logo {
   position: absolute;
   inset: 0;
-  width: 400px;
+  /* display: inline-block; */
+  width: 400px; 
+  /* height: auto; */
   background: url(./MindVault.png);
   background-size: 60%;
   background-repeat: no-repeat;
   vertical-align: middle;
 }
-
 .element-title {
   position: absolute;
   left: 100px;
@@ -70,7 +73,7 @@
 
 .cta-button {
   font-size: 1.2rem;
-  width: 50%;
+  width:50%;
   padding: 10px 20px;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2);

@@ -1,13 +1,3 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box; /* Prevents overflow issues */
-}
-html, body {
-  width: 100%;
-  height: 100%;
-  overflow-x: hidden; /* Prevents horizontal scrolling */
-}
 .quiz-container {
   font-family: 'Roboto', sans-serif;
   margin: 0;
