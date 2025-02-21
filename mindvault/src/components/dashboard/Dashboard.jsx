@@ -7,33 +7,33 @@ const Dashboard = () => {
       {/* Sidebar */}
       <Row>
         <Col md={2} className="bg-light sidebar p-3">
-          <h4 className="mb-4">📘 Learnthru</h4>
+          <h4 className="mb-4">Dashboard</h4>
           <ListGroup>
-            <ListGroup.Item action>📊 Dashboard</ListGroup.Item>
-            <ListGroup.Item action>🏫 Classroom</ListGroup.Item>
-            <ListGroup.Item action>🎥 Live Lessons</ListGroup.Item>
-            <ListGroup.Item action>📂 Recorded Lessons</ListGroup.Item>
-            <ListGroup.Item action>📚 Video Library</ListGroup.Item>
+            <ListGroup.Item action>📚 My Study Sessions</ListGroup.Item>
+            <ListGroup.Item action>🗓️ AI Study Planner</ListGroup.Item>
+            <ListGroup.Item action>🎴 Flashcards & Quizzes</ListGroup.Item>
+            <ListGroup.Item action>📊 Progress Analytics</ListGroup.Item>
+            <ListGroup.Item action>🤖 AI Study Assistant</ListGroup.Item>
           </ListGroup>
-          <div className="mt-5 p-3 text-center">
+          {/* <div className="mt-5 p-3 text-center">
             <p>Need help?</p>
             <Button variant="primary" size="sm">
               24/7 Support
             </Button>
-          </div>
+          </div> */}
         </Col>
 
         {/* Main Content */}
         <Col md={7} className="p-4">
           <Card className="p-4 shadow-sm">
-            <h5>Welcome back, Stella Walton!</h5>
-            <p>New French speaking classes are available. Learn more.</p>
+            <h5>Welcome back, Advika!</h5>
+            <p>Continue where you left off, explore new insights, or dive into your latest projects.</p>
             <Button variant="primary">Buy Lesson</Button>
           </Card>
 
           {/* Classes Section */}
           <Row className="mt-4">
-            {["English - UNIT III", "English - UNIT II", "UNIT I"].map(
+            {["Machine Learning", "Neural Networks", "Deep Learning"].map(
               (subject, idx) => (
                 <Col md={4} key={idx}>
                   <Card
@@ -52,7 +52,7 @@ const Dashboard = () => {
                       <Card.Text>📁 {10 + idx * 2} Files</Card.Text>
                       <Card.Text>
                         👨‍🏫 Teacher:{" "}
-                        {idx === 0 ? "Leona Jimenez" : "Cole Chandler"}
+                        {idx === 0 ? "Anshika Saxena" : "Mishthi Sachdeva" }
                       </Card.Text>
                     </Card.Body>
                   </Card>
@@ -65,9 +65,9 @@ const Dashboard = () => {
           <Card className="p-3 shadow-sm">
             <h6>Lessons</h6>
             <ListGroup>
-              <ListGroup.Item>A1 - Bernard Carr | ✅ Done</ListGroup.Item>
-              <ListGroup.Item>A1 - Henry Poole | ⏳ Pending</ListGroup.Item>
-              <ListGroup.Item>A1 - Helena Lowe | ⏳ Pending</ListGroup.Item>
+              <ListGroup.Item>A1 - Machine Learning | ✅ Done</ListGroup.Item>
+              <ListGroup.Item>A1 - Neural Network | ⏳ Pending</ListGroup.Item>
+              <ListGroup.Item>A1 - DBMS | ⏳ Pending</ListGroup.Item>
             </ListGroup>
           </Card>
         </Col>
@@ -76,11 +76,11 @@ const Dashboard = () => {
         <Col md={3} className="bg-light p-4">
           <div className="text-center">
             <img
-              src="https://via.placeholder.com/80"
+              src="mindvault\public\images\profile.avif"
               alt="Profile"
               className="rounded-circle mb-2"
             />
-            <h6>Stella Walton</h6>
+            <h6>Advika</h6>
             <Button variant="outline-primary" size="sm">
               Profile
             </Button>
@@ -102,9 +102,9 @@ const Dashboard = () => {
           <Card className="mt-3 p-3">
             <h6>🔔 Reminders</h6>
             <ListGroup>
-              <ListGroup.Item>📖 Eng - Vocabulary Test</ListGroup.Item>
-              <ListGroup.Item>✍️ Eng - Essay</ListGroup.Item>
-              <ListGroup.Item>🗣️ Eng - Speaking Class</ListGroup.Item>
+              <ListGroup.Item>📖 Data Structures Test</ListGroup.Item>
+              <ListGroup.Item>✍️ OOPs - Assignment</ListGroup.Item>
+              <ListGroup.Item>🗣️ DBMS Viva</ListGroup.Item>
             </ListGroup>
           </Card>
         </Col>

@@ -8,19 +8,26 @@
 }
 
 /* Navbar Customization */
-.navbar-custom {
+.navbar {
   padding: 20px 0;
 }
 
-.nav-link-custom {
-  color: #fff;
-  margin-right: 15px;
+#navbtn {
+  background-color: transparent;
+  margin-right: 10px;
+  padding: 8px 12px;
+  border: 1px solid white;
+  border-radius: 8px;
+  transition: background 0.3s ease-in-out;
+}
+#navbtn:hover {
+  background-color: grey;
 }
 
-.signup-btn {
+/* .signup-btn {
   font-weight: bold;
   border-radius: 10px;
-}
+} */
 
 /* Hero Section */
 .hero-section {
@@ -47,14 +54,21 @@
   max-width: 500px;
   margin: 10px 0 20px;
 }
-
-.elements.logo::before {
+.element.logo {
   position: absolute;
   inset: 0;
-  background: url(./mv.png);
-  background-size: 100px;
+  /* display: inline-block; */
+  width: 400px; 
+  /* height: auto; */
+  background: url(./MindVault.png);
+  background-size: 60%;
   background-repeat: no-repeat;
-  border-radius: 12px;
+  vertical-align: middle;
+}
+.element-title {
+  position: absolute;
+  left: 100px;
+  bottom: 40px;
 }
 
 .cta-button {

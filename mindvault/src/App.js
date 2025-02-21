@@ -10,8 +10,8 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<LandingPage />} />
-        <Route path="/login.jsx" element={<LoginPage />} />
-        <Route path="/Dashboard.jsx" element={<Dashboard/>}/>
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/Dashboard" element={<Dashboard/>}/>
         <Route path="/flashcardlist" element={<FlashcardList />} />
       </Routes>
     </Router>

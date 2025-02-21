@@ -8,19 +8,20 @@ export default function LandingPage() {
   return (
     <div className="landing-page">
       {/* Navbar */}
-      <Navbar bg="dark" variant="dark" expand="lg" className="navbar-custom">
+      <Navbar className="navbar" >
         <Container>
-          <Navbar.Brand href="#">
+          <Navbar.Brand>
+          <div className="element logo"></div>
             <div className="element-logo"> MindVault</div>
           </Navbar.Brand>
           <Nav className="ms-auto">
-            <Nav.Link href="/Dashboard.jsx" className="nav-link-custom">
+            <Button href="/Dashboard" type="button" id="navbtn" className="btn btn-outline-secondary">
               Dashboard
-            </Nav.Link>
-            <Nav.Link href="/login.jsx" className="nav-link-custom">
+            </Button>
+            <Button href="/login" type="button" id="navbtn" className="btn btn-outline-secondary">
               Sign in
-            </Nav.Link>
-            <Button variant="/login.jsx" className="signup-btn">
+            </Button>
+            <Button href="/login" type="button" id="navbtn" className="btn btn-outline-secondary">
               Sign up free
             </Button>
           </Nav>
