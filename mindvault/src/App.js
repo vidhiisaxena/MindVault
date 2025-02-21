@@ -18,6 +18,21 @@ function App() {
       </Routes>
     </Router>
   );
+{/* <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
+<script src="https://files.bpcontent.cloud/2025/02/21/17/20250221173635-6DOLLHY3.js"></script> */}
+    
+useEffect(() => {
+  const script = document.createElement("script");
+  script.src = "https://cdn.botpress.cloud/webchat/v2.2/inject.js";
+  script.src =
+    "https://files.bpcontent.cloud/2025/02/21/17/20250221173635-6DOLLHY3.js";
+  script.async = true;
+  document.body.appendChild(script);
+  
+  return () => {
+    document.body.removeChild(script); 
+  };
+}, []);
 }
 
 export default App;
