@@ -1,0 +1,14 @@
+.flashcard-list {
+    position: relative;
+    height: 200px; /* Adjust height based on number of flashcards */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+
+  }
+#nextq{
+    width: 300px;
+    position: relative;
+    top: 145%;
+}
