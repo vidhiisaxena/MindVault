@@ -30,16 +30,9 @@ function App() {
     document.body.appendChild(script);
     
     return () => {
-      document.body.removeChild(script); // Cleanup on unmount
+      document.body.removeChild(script); 
     };
   }, []);
-
-  return (
-    <div>
-      <h1>Welcome to My Website</h1>
-      {/* Your website content */}
-    </div>
-  );
 }
 
 export default App;
