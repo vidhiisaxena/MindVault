@@ -1,8 +1,8 @@
 import React from "react";
 import { Container, Navbar, Nav, Button } from "react-bootstrap";
-import {LoginPage} from "../signup/login";
+// import {LoginPage} from "../signup/login";
 import "./landing.css"; 
-import {Dashboard} from "../dashboard/Dashboard";
+// import {Dashboard} from "../dashboard/Dashboard";
 
 export default function LandingPage() {
   return (
@@ -12,7 +12,7 @@ export default function LandingPage() {
         <Container>
           <Navbar.Brand>
           <div className="element logo"></div>
-            <div className="element-logo"> MindVault</div>
+            {/* <div className="element-logo"> MindVault</div> */}
           </Navbar.Brand>
           <Nav className="ms-auto">
             <Button href="/Dashboard" type="button" id="navbtn" className="btn btn-outline-secondary">
