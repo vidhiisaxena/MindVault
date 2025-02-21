@@ -2,8 +2,21 @@ from pydantic import BaseModel, EmailStr
 from typing import Optional
 from bson import ObjectId
 
+# Custom Pydantic field for handling MongoDB ObjectId
+class PyObjectId(str):
+    @classmethod
+    def __get_validators__(cls):
+        yield cls.validate
+
+    @classmethod
+    def validate(cls, v):
+        if not isinstance(v, ObjectId):
+            raise ValueError("Not a valid ObjectId")
+        return str(v)
+
 class Flashcard(BaseModel):
-    user_id: int  # Changed from str to int
+    id: PyObjectId  # Added ObjectId support
+    user_id: int  # Kept as int
     topic: str
     question: str
     answer: str

@@ -1,19 +1,21 @@
 from fastapi import FastAPI, File, UploadFile, HTTPException
 from motor.motor_asyncio import AsyncIOMotorClient
+from fastapi.encoders import jsonable_encoder
 import fitz  # PyMuPDF
 import os
+from bson import ObjectId
 
 app = FastAPI()
 
 # ✅ Connect to MongoDB
-MONGO_URI = os.getenv("MONGO_URI", "mongodb://localhost:27017")
+MONGO_URI = os.getenv("MONGO_URI")
 client = AsyncIOMotorClient(MONGO_URI)
 db = client["flashcardDB"]  # Database name
 flashcards_collection = db["flashcards"]  # Collection name
 
 # ✅ Upload and Extract Flashcards from PDF
 @app.post("/upload_pdf/")
-async def upload_pdf(user_id: int, file: UploadFile = File(...)):
+async def upload_pdf(user_id: int, file: UploadFile = File(None)):
     try:
         content = await file.read()
         pdf_text = ""
@@ -45,12 +47,19 @@ async def upload_pdf(user_id: int, file: UploadFile = File(...)):
         return {"error": str(e)}
 
 # ✅ Get Flashcards for a User
-@app.get("/flashcards/{user_id}")
-async def get_flashcards(user_id: int):
-    flashcards = await flashcards_collection.find({"user_id": user_id}).to_list(100)
-    if not flashcards:
-        raise HTTPException(status_code=404, detail="No flashcards found for this user")
-    return {"flashcards": flashcards}
+from bson import ObjectId
+
+@app.get("/flashcards/{id}")
+async def get_flashcard(id: str):
+    try:
+        flashcard = await flashcards_collection.find_one({"_id": ObjectId(id)})
+        if flashcard:
+            flashcard["_id"] = str(flashcard["_id"])
+            return jsonable_encoder(flashcard)
+        raise HTTPException(status_code=404, detail="Flashcard not found")
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=str(e))
+
 
 # ✅ Quiz Mode: Check User Answer
 @app.post("/flashcards/quiz/")

@@ -10,6 +10,4 @@ db = client["flashcardDB"]  # Database name
 flashcards_collection = db["flashcards"]  # Collection name
 
 auth_db = client["authDB"]
-db = client["flashcardDB"]
-flashcards_collection = db["flashcards"]
 users_collection = auth_db["users"]
