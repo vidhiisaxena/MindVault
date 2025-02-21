@@ -8,6 +8,7 @@ const Quiz = () => {
   const [questionBank] = useState(qBank);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedOption, setSelectedOption] = useState("");
+  const [selectedDifficulty, setSelectedDifficulty] = useState(null); // Track difficulty
   const [score, setScore] = useState(0);
   const [quizEnd, setQuizEnd] = useState(false);
 
@@ -36,9 +37,13 @@ const Quiz = () => {
     }
   };
 
+  const handleDifficultyClick = (difficulty) => {
+    setSelectedDifficulty(difficulty);
+  };
+
   return (
     <div className="quiz-container d-flex flex-column align-items-center justify-content-center">
-      <h1 className="app-title">QUIZ</h1>
+      {/* <h1 className="app-title">QUIZ</h1> */}
       {!quizEnd ? (
         <div className="question-container">
           <h2 className="question-text">{questionBank[currentQuestion].question}</h2>
@@ -55,6 +60,30 @@ const Quiz = () => {
                 {option}
               </label>
             ))}
+            {/* Difficulty Level Buttons */}
+            <div className="difficulty-buttons">
+              <button
+                type="button"
+                className={`flag-button easy ${selectedDifficulty === "easy" ? "selected" : ""}`}
+                onClick={() => handleDifficultyClick("easy")}
+              >
+                Easy
+              </button>
+              <button
+                type="button"
+                className={`flag-button medium ${selectedDifficulty === "medium" ? "selected" : ""}`}
+                onClick={() => handleDifficultyClick("medium")}
+              >
+                Medium
+              </button>
+              <button
+                type="button"
+                className={`flag-button hard ${selectedDifficulty === "hard" ? "selected" : ""}`}
+                onClick={() => handleDifficultyClick("hard")}
+              >
+                Difficult
+              </button>
+            </div>
             <button type="submit" className="quiz-btn">
               Submit
             </button>

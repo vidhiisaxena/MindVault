@@ -147,6 +147,56 @@
   color: #ff416c;
   transform: translateX(5px);
 }
+.flag-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  
+  /* Metallic default */
+  background: linear-gradient(145deg, #a0a0a0, #e0e0e0);  
+  color: black;
+  border: 1px solid #888;
+  box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3),
+              inset -2px -2px 4px rgba(255, 255, 255, 0.5);
+}
+
+/* Hover - Switch to solid colors */
+.flag-button:hover {
+  background: #ff416c !important;
+  color: white !important;
+}
+
+/* Individual Colors on Hover */
+.flag-button.easy:hover {
+  background: #20daae !important;
+}
+
+.flag-button.medium:hover {
+  background: #40d7f2 !important;
+}
+
+.flag-button.hard:hover {
+  background: #ff53a9 !important;
+}
+
+/* Active (Pressed) Effect */
+.flag-button:active {
+  transform: scale(0.98);
+  box-shadow: inset 2px 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+/* Selected State (Metallic when not hovered) */
+.flag-button.selected {
+  background: linear-gradient(145deg, #a0a0a0, #e0e0e0) !important;
+  color: black !important;
+  box-shadow: inset 2px 2px 6px rgba(0, 0, 0, 0.5), 
+              2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
 
 .quiz-btn {
   background-image: linear-gradient(90deg, #007bff, #ff416c);
