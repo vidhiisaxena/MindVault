@@ -2,6 +2,7 @@ import React from "react";
 import { Container, Navbar, Nav, Button } from "react-bootstrap";
 import {LoginPage} from "../signup/login";
 import "./landing.css"; 
+import {Dashboard} from "../dashboard/Dashboard";
 
 export default function LandingPage() {
   return (
@@ -10,10 +11,10 @@ export default function LandingPage() {
       <Navbar bg="dark" variant="dark" expand="lg" className="navbar-custom">
         <Container>
           <Navbar.Brand href="#">
-            <img src="/logo.png" alt="Atlas Logo" className="logo" /> MindVault
+            <div className="element-logo"> MindVault</div>
           </Navbar.Brand>
           <Nav className="ms-auto">
-            <Nav.Link href="#" className="nav-link-custom">
+            <Nav.Link href="/Dashboard.jsx" className="nav-link-custom">
               Dashboard
             </Nav.Link>
             <Nav.Link href="/login.jsx" className="nav-link-custom">
@@ -29,13 +30,14 @@ export default function LandingPage() {
       {/* Hero Section */}
       <Container className="hero-section text-center">
         <h1 className="hero-title">
-          <span className="grad-text">Supercharge</span> your grades
+          <span className="grad-text">Unlock</span> your Potential
         </h1>
         <p className="hero-subtext">
-          Study, write, and solve faster with the most accurate AI for school.
+          Maximize your coding potential with AI-powered learning and
+          interview prep.
         </p>
         <Button variant="light" className="cta-button">
-          Use Atlas for free
+          Unleash the Powers of you Mind
         </Button>
       </Container>
     </div>
