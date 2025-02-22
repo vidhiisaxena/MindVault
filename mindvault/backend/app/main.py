@@ -2,68 +2,59 @@ import fitz  # PyMuPDF for extracting text from PDFs
 from fastapi import FastAPI, UploadFile, File, HTTPException
 from pathlib import Path
 from pydantic import BaseModel
-from typing import List
+from typing import List, Dict
 import random
-import nltk
-from nltk.tokenize import sent_tokenize, word_tokenize
-from nltk import pos_tag
+import datetime
+from enum import Enum
+
+# ✅ Define difficulty levels using Enum
+class DifficultyLevel(str, Enum):
+    easy = "Easy"
+    medium = "Medium"
+    hard = "Hard"
 
 app = FastAPI()
+
+from fastapi.middleware.cors import CORSMiddleware
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000"],  # Adjust based on frontend URL
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 UPLOAD_DIR = Path("uploads")
 UPLOAD_DIR.mkdir(exist_ok=True)  # Ensure upload directory exists
 
 pdf_storage = {}  # Temporary storage for uploaded PDFs
-quiz_answers = {}  # Temporary storage for correct answers
-
-
-class QuizSubmission(BaseModel):
-    user_answers: List[str]  # List of user's answers
+flashcards_db = {}  # Store flashcards with review schedules
 
 
 def extract_text_from_pdf(pdf_path):
     """Extract text from PDF file."""
     doc = fitz.open(pdf_path)
-    text = ""
-    for page in doc:
-        text += page.get_text("text") + "\n"
+    text = "\n".join([page.get_text("text") for page in doc])
     return text
 
 
-def generate_quiz_from_text(text, num_questions=5):
-    """Generate quiz questions from extracted text using nltk."""
-    sentences = sent_tokenize(text)  # Tokenize into sentences
-    sentences = [s.strip() for s in sentences if len(s.strip()) > 10]  # Remove short sentences
-    quiz_questions = []
+def generate_flashcards_from_text(text, num_flashcards=5):
+    """Generate flashcards from extracted text."""
+    sentences = text.split(". ")
+    flashcards = []
 
-    for _ in range(min(num_questions, len(sentences))):
+    for _ in range(min(num_flashcards, len(sentences))):
         sentence = random.choice(sentences)
-        sentences.remove(sentence)  # Prevent repetition
-
-        words = word_tokenize(sentence)  # Tokenize into words
-        tagged_words = pos_tag(words)  # Get part-of-speech tags
-
-        # Extract meaningful words (nouns, verbs, adjectives)
-        key_words = [word for word, tag in tagged_words if tag.startswith(('NN', 'VB', 'JJ'))]
-
-        if len(key_words) < 2:  # Ensure we have enough words to create options
-            continue
-
-        correct_answer = random.choice(key_words)  # Select a correct answer
-        options = random.sample(key_words, min(3, len(key_words)))  # Select other options
-        options.append(correct_answer)
-        random.shuffle(options)
-
-        # Replace the correct answer with a blank in the sentence
-        sentence_with_blank = sentence.replace(correct_answer, "___", 1)
-
-        quiz_questions.append({
-            "question": f"Fill in the blank: {sentence_with_blank}",
-            "options": options,
-            "correct_answer": correct_answer
+        sentences.remove(sentence)
+        flashcards.append({
+            "id": len(flashcards) + 1,
+            "content": sentence.strip(),
+            "next_review": None,
+            "easiness_streak": 0
         })
-
-    return quiz_questions
+    
+    return flashcards
 
 
 @app.post("/upload-pdf")
@@ -76,51 +67,48 @@ async def upload_pdf(file: UploadFile = File(...)):
     return {"filename": file.filename, "message": "PDF uploaded successfully"}
 
 
-@app.post("/generate-quiz")
-async def generate_quiz():
-    if "latest" not in pdf_storage:
-        raise HTTPException(status_code=400, detail="No PDF uploaded yet")
-
-    pdf_path = pdf_storage["latest"]
-
-    # Extract text from PDF
-    extracted_text = extract_text_from_pdf(pdf_path)
-
-    # Generate quiz from text
-    quiz_questions = generate_quiz_from_text(extracted_text, num_questions=5)
-
-    if not quiz_questions:
-        raise HTTPException(status_code=400, detail="Could not generate quiz. Try another PDF.")
-
-    # Store correct answers
-    quiz_answers["latest"] = [q["correct_answer"] for q in quiz_questions]
-
-    return {"message": "Quiz generated successfully", "quiz": quiz_questions}
-
-
-@app.post("/submit-quiz")
-async def submit_quiz(submission: QuizSubmission):
-    if "latest" not in quiz_answers:
-        raise HTTPException(status_code=400, detail="No quiz available for scoring")
-
-    correct_answers = quiz_answers["latest"]
-
-    # Calculate the score
-    score = sum(1 for user_ans, correct_ans in zip(submission.user_answers, correct_answers) if user_ans == correct_ans)
-
-    return {"message": "Quiz submitted successfully", "total_score": score, "max_score": len(correct_answers)}
-
-
 @app.post("/generate-flashcards")
 async def generate_flashcards():
     if "latest" not in pdf_storage:
         raise HTTPException(status_code=400, detail="No PDF uploaded yet")
 
     pdf_path = pdf_storage["latest"]
-    # Logic to extract text and generate flashcards from the uploaded PDF
-    return {"message": "Flashcards generated successfully", "pdf": str(pdf_path)}
+    extracted_text = extract_text_from_pdf(pdf_path)
+    flashcards = generate_flashcards_from_text(extracted_text, num_flashcards=5)
+    
+    flashcards_db["latest"] = flashcards
+    return {"message": "Flashcards generated successfully", "flashcards": flashcards}
 
 
-# Remove the auth import to prevent ModuleNotFoundError
+# ✅ Define Flashcard Rating Model Properly
+class FlashcardRating(BaseModel):
+    flashcard_id: int
+    difficulty: DifficultyLevel  # Ensure the Enum is used correctly
+
+
+@app.post("/rate-flashcard")
+async def rate_flashcard(rating: FlashcardRating):
+    if "latest" not in flashcards_db:
+        raise HTTPException(status_code=400, detail="No flashcards available")
+
+    flashcards = flashcards_db["latest"]
+    flashcard = next((fc for fc in flashcards if fc["id"] == rating.flashcard_id), None)
+
+    if not flashcard:
+        raise HTTPException(status_code=404, detail="Flashcard not found")
+
+    today = datetime.date.today()
+
+    if rating.difficulty == DifficultyLevel.easy:
+        flashcard["easiness_streak"] += 1
+        flashcard["next_review"] = today + datetime.timedelta(days=30) if flashcard["easiness_streak"] >= 2 else today + datetime.timedelta(days=7)
+    elif rating.difficulty == DifficultyLevel.medium:
+        flashcard["next_review"] = today + datetime.timedelta(days=5)
+    elif rating.difficulty == DifficultyLevel.hard:
+        flashcard["next_review"] = today + datetime.timedelta(days=2)
+
+    return {"message": "Flashcard rating updated", "next_review": flashcard["next_review"].isoformat()}
+
+# # Remove the auth import to prevent ModuleNotFoundError
 from app.routes import auth
 app.include_router(auth.auth_router, prefix="/auth", tags=["auth"])

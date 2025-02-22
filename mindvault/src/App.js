@@ -11,6 +11,7 @@ function App() {
   return (
     <Router>
       <Routes>
+        <Route path="/login" element={<LoginPage />} />
         <Route path="/" element={<LandingPage />} />
         <Route path="/Dashboard" element={<Dashboard/>}/>
         <Route path="/flashcardlist" element={<FlashcardList />} />
