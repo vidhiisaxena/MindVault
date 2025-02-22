@@ -1,127 +1,72 @@
 import React, { useState, useEffect } from "react";
-import "./pomodoroTimer.css";
+import PomodoroCharacter from "./PomodoroCharacter";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./PomodoroStyles.css"; // Custom Dark Theme Styles
 
-const DURATIONS = {
-  pomodoro: 25 * 60,
-  shortBreak: 5 * 60,
-  longBreak: 15 * 60,
-};
+const PomodoroTimer = () => {
+  const [time, setTime] = useState(25 * 60); // 25 minutes
+  const [isRunning, setIsRunning] = useState(false);
+  const [session, setSession] = useState("Focus Time");
 
-function PomodoroTimer() {
-  const [mode, setMode] = useState("pomodoro");
-  const [timeLeft, setTimeLeft] = useState(DURATIONS.pomodoro);
-  const [cycleCount, setCycleCount] = useState(1);
-  const [timerActive, setTimerActive] = useState(false);
-
-  // Whenever mode changes, reset the timer to the new duration
   useEffect(() => {
-    setTimeLeft(DURATIONS[mode]);
-  }, [mode]);
-
-  // Main timer effect
-  useEffect(() => {
-    if (!timerActive) return;
-
-    if (timeLeft <= 0) {
-      handleSessionEnd();
-      return;
-    }
-
-    const interval = setInterval(() => {
-      setTimeLeft((prev) => prev - 1);
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, [timerActive, timeLeft]);
-
-  // What happens when a session finishes or is skipped
-  const handleSessionEnd = () => {
-    if (mode === "pomodoro") {
-      // Increment cycle count after a pomodoro
-      setCycleCount((prev) => prev + 1);
-      // Every 4 pomodoros, go to long break
-      if (cycleCount % 4 === 0) {
-        setMode("longBreak");
-      } else {
-        setMode("shortBreak");
-      }
+    let interval = null;
+    if (isRunning) {
+      interval = setInterval(() => {
+        setTime((prevTime) => {
+          if (prevTime <= 1) {
+            clearInterval(interval);
+            handleSessionEnd();
+            return 0;
+          }
+          return prevTime - 1;
+        });
+      }, 1000);
     } else {
-      // If we were on a break, switch back to pomodoro
-      setMode("pomodoro");
+      clearInterval(interval);
     }
-    setTimerActive(false);
+    return () => clearInterval(interval);
+  }, [isRunning]);
+
+  const handleSessionEnd = () => {
+    if (session === "Focus Time") {
+      setSession("Break Time");
+      setTime(5 * 60); // 5-minute break
+    } else {
+      setSession("Focus Time");
+      setTime(25 * 60); // 25-minute focus
+    }
+    setIsRunning(false);
   };
 
-  const handleSkip = () => {
-    handleSessionEnd();
+  const handleStartStop = () => {
+    setIsRunning(!isRunning);
   };
 
-  const handleStartPause = () => {
-    setTimerActive((prev) => !prev);
-  };
-
-  const handleModeChange = (newMode) => {
-    setMode(newMode);
-    setTimerActive(false);
-  };
-
-  // Utility to format seconds as mm:ss
-  const formatTime = (secs) => {
-    const m = Math.floor(secs / 60);
-    const s = secs % 60;
-    return `${m < 10 ? "0" + m : m}:${s < 10 ? "0" + s : s}`;
+  const formatTime = (seconds) => {
+    const minutes = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${minutes}:${secs < 10 ? "0" : ""}${secs}`;
   };
 
   return (
-    <div className="pomofocus-container">
-      <nav className="navbar">
-        <div className="nav-left">Pomodoro Timer</div>
-        <div className="nav-right">
-          <button>Report</button>
-          <button>Setting</button>
-          <button>Sign In</button>
-        </div>
-      </nav>
-
-      <div className="timer-card">
-        <div className="mode-tabs">
-          <button
-            className={mode === "pomodoro" ? "active" : ""}
-            onClick={() => handleModeChange("pomodoro")}
-          >
-            Pomodoro
+    <div className="pomodoro-container">
+      <div className="pomodoro-box">
+        <h1 className="session-title">{session}</h1>
+        <div className="timer-display">{formatTime(time)}</div>
+        <div className="button-group">
+          <button className="btn btn-success" onClick={handleStartStop}>
+            {isRunning ? "Pause" : "Start"}
           </button>
-          <button
-            className={mode === "shortBreak" ? "active" : ""}
-            onClick={() => handleModeChange("shortBreak")}
-          >
-            Short Break
-          </button>
-          <button
-            className={mode === "longBreak" ? "active" : ""}
-            onClick={() => handleModeChange("longBreak")}
-          >
-            Long Break
-          </button>
-        </div>
-
-        <div className="time-display">{formatTime(timeLeft)}</div>
-
-        <div className="controls">
-          <button className="start-pause-btn" onClick={handleStartPause}>
-            {timerActive ? "PAUSE" : "START"}
-          </button>
-          <button className="skip-btn" onClick={handleSkip}>
-            SKIP
+          <button className="btn btn-danger" onClick={handleSessionEnd}>
+            Skip
           </button>
         </div>
       </div>
 
-      <div className="session-info">
-        #{cycleCount} {mode === "pomodoro" ? "Time to focus!" : "Break time!"}
-      </div>
+      {/* Character and Quote Section */}
+      <PomodoroCharacter session={session} />
     </div>
   );
-}
+};
 
 export default PomodoroTimer;
