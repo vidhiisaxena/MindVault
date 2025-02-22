@@ -10,10 +10,12 @@ const Sidebar = () => {
             <Link to="/dashboard" className="dashboard-link">Dashboard</Link>
             </h4>
             <ListGroup className="sideicons">
+                <ListGroup.Item className="sideicon" action as={Link} to="../">💻 Home</ListGroup.Item>
                 <ListGroup.Item className="sideicon" action as={Link} to="../uploadNotes">📚 Upload Notes</ListGroup.Item>
                 <ListGroup.Item className="sideicon" action as={Link} to="../quiz">✅ Quiz</ListGroup.Item>
                 <ListGroup.Item className="sideicon" action as={Link} to="../flashcardlist">🎴 Flashcards </ListGroup.Item>
                 <ListGroup.Item className="sideicon" action as={Link} to="../progress">📊 Progress Analytics</ListGroup.Item>
+                <ListGroup.Item className="sideicon" action as={Link} to="../pomodoroTimer">⏰ Pomodoro Timer</ListGroup.Item>
                 {/* <ListGroup.Item action>🤖 AI Study Assistant</ListGroup.Item> */}
             </ListGroup>
         </Col>
