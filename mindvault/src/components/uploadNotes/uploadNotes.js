@@ -7,6 +7,7 @@ const UploadPage = () => {
     const [showModal, setShowModal] = useState(false);
     const [showToast, setShowToast] = useState(false);
     const [selectedFile, setSelectedFile] = useState(null);
+    const [uploadedFileName, setUploadedFileName] = useState("");
 
     const handleFileChange = (event) => {
         setSelectedFile(event.target.files[0]);
@@ -14,6 +15,7 @@ const UploadPage = () => {
 
     const handleUpload = () => {
         if (selectedFile) {
+            setUploadedFileName(selectedFile.name);
             setShowToast(true); // Show success message
             setShowModal(false); // Close the modal
         }
@@ -26,6 +28,13 @@ const UploadPage = () => {
                 📤 Upload Notes
             </Button>
 
+            {/* Display uploaded file name */}
+            {uploadedFileName && (
+                <p className="uploaded-file">
+                    <strong>📂 File uploaded:</strong> {uploadedFileName}
+                </p>
+            )}
+            
             {/* Upload Notes Modal */}
             <Modal show={showModal} onHide={() => setShowModal(false)} centered>
                 <Modal.Body className="upload-modal">

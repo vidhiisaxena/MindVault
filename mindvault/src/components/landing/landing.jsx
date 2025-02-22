@@ -23,7 +23,7 @@ export default function LandingPage() {
               Sign in
             </Button>
             <Button href="/login" type="button" id="navbtn" className="btn btn-outline-secondary">
-              Sign up free
+              Sign up
             </Button>
           </Nav>
         </Container>
