@@ -16,7 +16,7 @@ const Dashboard = () => {
           <h4 className="mb-4">Dashboard</h4>
           <ListGroup className="sideicons">
             <ListGroup.Item className="sideicon" action as={Link} to="../uploadNotes">📚 Upload Notes</ListGroup.Item>
-            <ListGroup.Item className="sideicon" action as={Link} to="../quiz">🗓️ Quiz</ListGroup.Item>
+            <ListGroup.Item className="sideicon" action as={Link} to="../quiz">✅ Quiz</ListGroup.Item>
             <ListGroup.Item className="sideicon" action as={Link} to="../flashcardlist">🎴 Flashcards </ListGroup.Item>
             <ListGroup.Item className="sideicon" action as={Link} to="../progress">📊 Progress Analytics</ListGroup.Item>
           </ListGroup>
@@ -27,7 +27,7 @@ const Dashboard = () => {
           <Card className="p-4 shadow-sm">
             <h5>Welcome back, {username}!</h5> {/* Display the username here */}
             <p>Continue where you left off, explore new insights, or dive into your latest projects.</p>
-            <Button id="buybtn" variant="primary">Buy Lesson</Button>
+            <Button id="buybtn" variant="primary">Ready to ace your game?🚀</Button>
           </Card>
 
           {/* Classes Section */}

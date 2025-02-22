@@ -39,11 +39,26 @@ export default function LandingPage() {
           interview prep.
         </p>
         <Button variant="light" className="cta-button" href="#feature">
-          Unleash the Powers of you Mind
+          Unleash the Powers of your Mind
+        </Button>
+      </Container>
+      <Feature />
+
+      {/* Student Offer Section (New Section Below Features) */}
+      <Container className="student-offer">
+        <h2 className="student-title">
+          <div className="signtext">Boost grade.</div>
+          <div className="signtext">Not stress.</div> 
+          <div>Free for students.</div>
+        </h2>
+        <p className="student-subtext">
+          Start setting the curve with the most accurate AI.
+        </p>
+        <Button className="student-btn" href="/login">
+          Use MindVault for free
         </Button>
       </Container>
 
-      <Feature />
     </div>
   );
 }
