@@ -1,35 +1,31 @@
 import React from "react";
 import { Container, Row, Col, Card, Button, ListGroup } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import "./Dashboard.css";
 
 const Dashboard = () => {
+  const username = localStorage.getItem("username"); // Retrieve username from localStorage
+
   return (
     <Container fluid className="dashboard">
       {/* Sidebar */}
       <Row>
         <Col md={2} className="bg-light sidebar p-3">
           <h4 className="mb-4">Dashboard</h4>
-          <ListGroup>
-            <ListGroup.Item action>📚 My Study Sessions</ListGroup.Item>
-            <ListGroup.Item action>🗓️ AI Study Planner</ListGroup.Item>
-            <ListGroup.Item action>🎴 Flashcards & Quizzes</ListGroup.Item>
-            <ListGroup.Item action>📊 Progress Analytics</ListGroup.Item>
-            <ListGroup.Item action>🤖 AI Study Assistant</ListGroup.Item>
+          <ListGroup className="sideicons">
+            <ListGroup.Item className="sideicon" action as={Link} to="../uploadNotes">📚 Upload Notes</ListGroup.Item>
+            <ListGroup.Item className="sideicon" action as={Link} to="../quiz">🗓️ Quiz</ListGroup.Item>
+            <ListGroup.Item className="sideicon" action as={Link} to="../flashcardlist">🎴 Flashcards </ListGroup.Item>
+            <ListGroup.Item className="sideicon" action as={Link} to="../progress">📊 Progress Analytics</ListGroup.Item>
           </ListGroup>
-          {/* <div className="mt-5 p-3 text-center">
-            <p>Need help?</p>
-            <Button variant="primary" size="sm">
-              24/7 Support
-            </Button>
-          </div> */}
         </Col>
 
         {/* Main Content */}
         <Col md={7} className="p-4">
           <Card className="p-4 shadow-sm">
-            <h5>Welcome back, Advika!</h5>
+            <h5>Welcome back, {username}!</h5> {/* Display the username here */}
             <p>Continue where you left off, explore new insights, or dive into your latest projects.</p>
             <Button id="buybtn" variant="primary">Buy Lesson</Button>
           </Card>
@@ -77,20 +73,19 @@ const Dashboard = () => {
 
         {/* Right Sidebar */}
         <Col md={3} className=" p-4">
-        <div className="profile-container text-center">
+          <div className="profile-container text-center">
             <div className="profile-image">
               <img
                 src={`${process.env.PUBLIC_URL}/images/avatar.jpg`}
                 alt="Profile"
               />
             </div>
-            <h6>Advika</h6>
+            <h6>{username}</h6> {/* Display username here */}
             <Button variant="outline-primary" size="sm">
               Profile
             </Button>
           </div>
 
-          
           {/* Calendar Section */}
           <Card className="mt-3 p-3 calendar-card">
             <h6>📅 Calendar</h6>

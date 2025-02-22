@@ -22,7 +22,7 @@
   width: 100%;
   z-index: 1000; /* Ensures it's above other elements */
   background-color: #000; /* Adjust background color if needed */
-  padding: 10px 0;
+  padding: 12px 0;
 }
 .landing-page {
   padding-top: 70px; /* Prevents content from being hidden behind navbar */

@@ -1,9 +1,11 @@
 import React from "react";
 import "./progress.css"; // Import the CSS file
+import Sidebar from "../sidebar/sidebar";
 
 const Progress = () => {
   return (
     <div className="progress-container">
+      <Sidebar />
       {/* Left Section: Graph & Stats */}
       <div className="left-section">
         <h2 className="title">AI-Predicted Forgetting Graph</h2>
@@ -26,14 +28,14 @@ const Progress = () => {
       </div>
 
       {/* Right Section: Suggested Questions */}
-      <div className="right-section">
+      {/* <div className="right-section">
         <h3 className="sub-title">Suggested Questions</h3>
         <ul className="suggestions">
           <li>🔹 How can I optimize my daily workflow?</li>
           <li>🔹 What distractions can I minimize?</li>
           <li>🔹 How can I improve my focus time?</li>
         </ul>
-      </div>
+      </div> */}
     </div>
   );
 };

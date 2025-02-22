@@ -22,7 +22,7 @@
   left: 0;
   width: 100%;  /* Full viewport width */
   height: 100%; /* Full viewport height */
-  background: url('./assets/background.avif') no-repeat center center fixed;
+  background: url('./assets/background.jpg') no-repeat center center fixed;
   background-size: cover; /* Ensure full coverage */
   z-index: -1;
   filter: blur(3px);
