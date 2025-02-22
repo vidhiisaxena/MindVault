@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./flashcardlist.css";
 import Flashcard from "./flashcard";
+import Sidebar from "../sidebar/sidebar";
 
 const FlashcardList = () => {
   const [cards, setCards] = useState([]);
@@ -51,6 +52,7 @@ const FlashcardList = () => {
 
   return (
     <div className="flashcard-container">
+      <Sidebar />
       {cards.length > 0 ? (
         <Flashcard 
           question={cards[currentIndex].content} 

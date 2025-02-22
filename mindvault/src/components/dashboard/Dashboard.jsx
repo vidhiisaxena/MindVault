@@ -1,5 +1,6 @@
 import React from "react";
 import { Container, Row, Col, Card, Button, ListGroup } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import "./Dashboard.css";
@@ -11,12 +12,12 @@ const Dashboard = () => {
       <Row>
         <Col md={2} className="bg-light sidebar p-3">
           <h4 className="mb-4">Dashboard</h4>
-          <ListGroup>
-            <ListGroup.Item action>📚 My Study Sessions</ListGroup.Item>
-            <ListGroup.Item action>🗓️ AI Study Planner</ListGroup.Item>
-            <ListGroup.Item action>🎴 Flashcards & Quizzes</ListGroup.Item>
-            <ListGroup.Item action>📊 Progress Analytics</ListGroup.Item>
-            <ListGroup.Item action>🤖 AI Study Assistant</ListGroup.Item>
+          <ListGroup className="sideicons">
+            <ListGroup.Item className="sideicon" action as={Link} to="../flashcardlist">📚 Upload Notes</ListGroup.Item>
+            <ListGroup.Item className="sideicon" action as={Link} to="../quiz">🗓️ Quiz</ListGroup.Item>
+            <ListGroup.Item className="sideicon" action as={Link} to="../flashcardlist">🎴 Flashcards </ListGroup.Item>
+            <ListGroup.Item className="sideicon" action as={Link} to="../flashcardlist">📊 Progress Analytics</ListGroup.Item>
+            {/* <ListGroup.Item action>🤖 AI Study Assistant</ListGroup.Item> */}
           </ListGroup>
           {/* <div className="mt-5 p-3 text-center">
             <p>Need help?</p>

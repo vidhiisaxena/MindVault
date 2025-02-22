@@ -3,6 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import qBank from "./Components/QuestionBank";
 import Score from "./Components/Score";
 import "./Quiz.css";
+import Sidebar from "../sidebar/sidebar";
 
 const Quiz = () => {
   const [questionBank] = useState(qBank);
@@ -43,6 +44,7 @@ const Quiz = () => {
 
   return (
     <div className="quiz-container d-flex flex-column align-items-center justify-content-center">
+      <Sidebar />
       {/* <h1 className="app-title">QUIZ</h1> */}
       {!quizEnd ? (
         <div className="question-container">
