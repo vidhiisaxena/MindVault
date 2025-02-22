@@ -26,7 +26,7 @@ export default function LoginPage() {
                             <form>
                                 <input type="text" placeholder="email" />
                                 <input type="password" placeholder="password" />
-                                <button className="login">Login</button>
+                                <button className="login" >Login</button>
                             </form>
                         </div>
                 <div className="card"></div>

@@ -13,10 +13,10 @@ const Dashboard = () => {
         <Col md={2} className="bg-light sidebar p-3">
           <h4 className="mb-4">Dashboard</h4>
           <ListGroup className="sideicons">
-            <ListGroup.Item className="sideicon" action as={Link} to="../flashcardlist">📚 Upload Notes</ListGroup.Item>
+            <ListGroup.Item className="sideicon" action as={Link} to="../uploadNotes">📚 Upload Notes</ListGroup.Item>
             <ListGroup.Item className="sideicon" action as={Link} to="../quiz">🗓️ Quiz</ListGroup.Item>
             <ListGroup.Item className="sideicon" action as={Link} to="../flashcardlist">🎴 Flashcards </ListGroup.Item>
-            <ListGroup.Item className="sideicon" action as={Link} to="../flashcardlist">📊 Progress Analytics</ListGroup.Item>
+            <ListGroup.Item className="sideicon" action as={Link} to="../progress">📊 Progress Analytics</ListGroup.Item>
             {/* <ListGroup.Item action>🤖 AI Study Assistant</ListGroup.Item> */}
           </ListGroup>
           {/* <div className="mt-5 p-3 text-center">
