@@ -1,26 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./flashcardlist.css";
 import Flashcard from "./flashcard";
 import Sidebar from "../sidebar/sidebar";
 
 const FlashcardList = () => {
-  const [cards, setCards] = useState([]);
+  // Hardcoded flashcards
+  const [cards, setCards] = useState([
+    { id: 1, content: "What is a model's ability to generalize?", answer: "Overfitting" },
+    { id: 2, content: "What algorithm minimizes a loss function in machine learning?", answer: "Gradient Descent" },
+    { id: 3, content: "What type of learning uses labeled data?", answer: "Supervised" },
+    { id: 4, content: "What is the chemical symbol for water?", answer: "H2O" },
+  ]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [flipped, setFlipped] = useState(false);
   const [difficulty, setDifficulty] = useState(null);
-
-  // Fetch flashcards from FastAPI backend
-  useEffect(() => {
-    fetch("http://localhost:8000/generate-flashcards", { method: "POST" })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.flashcards) {
-          setCards(data.flashcards);
-        }
-      })
-      .catch((err) => console.error("Error fetching flashcards:", err));
-  }, []);
 
   const handleFlip = () => setFlipped(!flipped);
 
@@ -34,19 +28,7 @@ const FlashcardList = () => {
     setDifficulty(level);
     if (cards.length > 0) {
       const flashcardId = cards[currentIndex].id;
-
-      try {
-        const response = await fetch("http://localhost:8000/rate-flashcard", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ flashcard_id: flashcardId, difficulty: level }),
-        });
-
-        const result = await response.json();
-        console.log(result.message);
-      } catch (error) {
-        console.error("Error rating flashcard:", error);
-      }
+      console.log(`Flashcard ${flashcardId} flagged as ${level}`);
     }
   };
 
@@ -56,7 +38,7 @@ const FlashcardList = () => {
       {cards.length > 0 ? (
         <Flashcard 
           question={cards[currentIndex].content} 
-          answer="(Answer not available in backend response)" 
+          answer={cards[currentIndex].answer} 
           flipped={flipped}
           onFlip={handleFlip}
         />
