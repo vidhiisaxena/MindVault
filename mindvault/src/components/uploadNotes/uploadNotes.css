@@ -3,8 +3,23 @@
     padding: 50px;
 }
 
+.upload-page::after {
+content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;  /* Full viewport width */
+  height: 100%; /* Full viewport height */
+  background: url('../quiz/assets/background.jpg') no-repeat center center fixed;
+  background-size: cover; /* Ensure full coverage */
+  z-index: -1;
+  filter: blur(3px);
+}
+
 .open-modal-btn {
     background-color: #4a90e2;
+    margin-left: 250px;
+    width: 80%;
     color: white;
     font-size: 18px;
     padding: 10px 20px;
