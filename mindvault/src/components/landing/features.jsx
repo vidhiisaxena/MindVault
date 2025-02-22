@@ -33,9 +33,9 @@ const data = [
 
 const Feature = () => {
   return (
-    <div id="feature" className="container-fluid mindvault-container text-white py-5">
+    <div className="container-fluid mindvault-container text-white py-5">
       <h2 className="text-center fw-bold mb-5">
-        <span className="gradient-text">Score higher</span> with powerful tools.
+        <span id="feature" className="gradient-text">Score higher</span> with powerful tools.
       </h2>
       <div className="scroll-container">
         {data.map((item, index) => (
