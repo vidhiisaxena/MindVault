@@ -1,15 +1,17 @@
 import React from "react";
-import "./progress.css"; // Import the CSS file
+import "./progress.css";
 import Sidebar from "../sidebar/sidebar";
+import ForgettingCurveGraph from "../forgetting-curve/forgetting-curve"; 
 
-const Progress = () => {
+function Progress() {
   return (
     <div className="progress-container">
       <Sidebar />
-      {/* Left Section: Graph & Stats */}
       <div className="left-section">
         <h2 className="title">AI-Predicted Forgetting Graph</h2>
-        <div className="graph-placeholder">[Graph Placeholder]</div>
+        <div className="graph-placeholder">
+          <ForgettingCurveGraph/>
+        </div>
 
         <div className="stats-container">
           <div className="stat-box">
@@ -29,15 +31,15 @@ const Progress = () => {
 
       {/* Right Section: Suggested Questions */}
       {/* <div className="right-section">
-        <h3 className="sub-title">Suggested Questions</h3>
-        <ul className="suggestions">
-          <li>🔹 How can I optimize my daily workflow?</li>
-          <li>🔹 What distractions can I minimize?</li>
-          <li>🔹 How can I improve my focus time?</li>
-        </ul>
-      </div> */}
+              <h3 className="sub-title">Suggested Questions</h3>
+              <ul className="suggestions">
+                <li>🔹 How can I optimize my daily workflow?</li>
+                <li>🔹 What distractions can I minimize?</li>
+                <li>🔹 How can I improve my focus time?</li>
+              </ul>
+            </div> */}
     </div>
   );
-};
+}
 
 export default Progress;
