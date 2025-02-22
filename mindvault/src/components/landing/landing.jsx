@@ -46,17 +46,19 @@ export default function LandingPage() {
 
       {/* Student Offer Section (New Section Below Features) */}
       <Container className="student-offer">
+        <div>
         <h2 className="student-title">
           <div className="signtext">Boost grade.</div>
           <div className="signtext">Not stress.</div> 
           <div>Free for students.</div>
         </h2>
         <p className="student-subtext">
-          Start setting the curve with the most accurate AI.
+          <div>Start setting the curve with the most accurate AI.</div>
         </p>
         <Button className="student-btn" href="/login">
-          Use MindVault for free
+          <div>Use MindVault for free</div>
         </Button>
+        </div>
       </Container>
 
     </div>
