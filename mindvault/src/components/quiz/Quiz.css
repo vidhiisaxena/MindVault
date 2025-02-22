@@ -63,6 +63,8 @@
 
 .question-container {
   background-color: rgba(231, 207, 207, 0.8);
+  margin-top: 30px;
+  margin-left: 20%;
   padding: 2rem;
   border-radius: 15px;
   width: 100%;
@@ -261,4 +263,8 @@
   .quiz-option label {
     font-size: 1.2rem;
   }
+}
+
+.result {
+  color: white;
 }

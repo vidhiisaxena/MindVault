@@ -33,6 +33,18 @@
     transform: scale(1.05);
 }
 
+.misc .dashboard-link {
+    text-decoration: none;
+    padding-left: 20% !important;
+    color: #fff;
+    font-weight: bold;
+    transition: color 0.3s;
+  }
+  
+.misc  .dashboard-link:hover {
+    color: #545c64; /* Bootstrap primary blue */
+  }
+  
 /* Ensures the main content shifts right to accommodate the sidebar */
 /* .flashcard-container {
     margin-left: 270px; 

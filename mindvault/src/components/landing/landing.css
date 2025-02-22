@@ -95,3 +95,44 @@
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2);
 }
+
+.student-offer {
+  text-align: center;
+  background: linear-gradient(135deg, #ff7eb3, #ff758c, #ff7eb3, #57a1f8);
+  color: white;
+  padding: 50px;
+  border-radius: 20px;
+  margin: 50px auto;
+  width: 80%;
+  position: relative;
+  bottom: 30px;
+}
+
+.student-title {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.student-subtext {
+  font-size: 18px;
+  margin-bottom: 25px;
+}
+
+.student-btn {
+  background: white;
+  color: black;
+  font-weight: bold;
+  padding: 12px 24px;
+  border-radius: 10px;
+  border: none;
+  transition: 0.3s;
+}
+
+.student-btn:hover {
+  background: #ddd;
+}
+
+.signtext{
+  opacity: 0.5;
+}

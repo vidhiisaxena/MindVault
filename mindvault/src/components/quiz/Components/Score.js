@@ -6,7 +6,7 @@ class Score extends Component {
         const { score, onNextQuestion } = this.props;
 
         return (
-            <div>
+            <div className='result'> 
                 <h2>Results</h2>
                 <h4>Your score: {score}</h4>
             </div>
