@@ -1,0 +1,109 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  background-color: linear-gradient(90deg, #17181a, #201317);
+  color: #000000;
+}
+
+.pomofocus-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.navbar {
+  display: flex;
+  flex-direction: row;
+  align-items: right;
+  padding: 10px 20px;
+}
+
+.nav-left {
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding-bottom: 0;
+}
+
+.nav-right button {
+  background: transparent;
+  color: #fff;
+  border: 1px solid #fff;
+  padding: 5px 12px;
+  margin-left: 10px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.timer-card {
+  background-color: rgba(255, 255, 255, 0.15);
+  margin: 30px auto;
+  padding: 20px;
+  border-radius: 8px;
+  width: 400px;
+  text-align: center;
+}
+
+.mode-tabs {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.mode-tabs button {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1rem;
+  margin: 0 10px;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-bottom: 2px solid transparent;
+}
+
+.mode-tabs button.active {
+  border-color: #fff; 
+  font-weight: bold;
+}
+
+
+.time-display {
+  font-size: 4rem;
+  margin-bottom: 20px;
+}
+
+
+.controls {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.start-pause-btn,
+.skip-btn {
+  background-color: #fff;
+  color: #d95550;
+  border: none;
+  border-radius: 4px;
+  font-size: 1.2rem;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.start-pause-btn:hover,
+.skip-btn:hover {
+  opacity: 0.9;
+}
+
+
+.session-info {
+  text-align: center;
+  margin-top: auto;
+  padding-bottom: 20px;
+  font-size: 1.2rem;
+}

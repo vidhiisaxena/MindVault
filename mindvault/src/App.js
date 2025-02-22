@@ -6,6 +6,7 @@ import Dashboard from "./components/dashboard/Dashboard";
 import FlashcardList from "./components/flashcard/flashcardlist";
 import Quiz from "./components/quiz/Quiz";
 import Progress from "./components/progress/progress";
+import PomodoroTimer from "./components/pomodoro timer/pomodoroTimer";
 import { useEffect } from "react";
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <Route path="/flashcardlist" element={<FlashcardList />} />
         <Route path="/quiz" element={<Quiz />} />
         <Route path="/progress" element={<Progress/>}/>
+        <Route path="/pomodoroTimer" element={<PomodoroTimer/>}/>
       </Routes>
     </Router>
   );
