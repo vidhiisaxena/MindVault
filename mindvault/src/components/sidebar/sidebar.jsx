@@ -6,7 +6,9 @@ const Sidebar = () => {
     return (
         <div className="misc">
         <Col md={2} className="bg-light sidebar p-3">
-            <h4 className="mb-4">Dashboard</h4>
+            <h4 className="mb-4">
+            <Link to="/dashboard" className="dashboard-link">Dashboard</Link>
+            </h4>
             <ListGroup className="sideicons">
                 <ListGroup.Item className="sideicon" action as={Link} to="../uploadNotes">📚 Upload Notes</ListGroup.Item>
                 <ListGroup.Item className="sideicon" action as={Link} to="../quiz">✅ Quiz</ListGroup.Item>
