@@ -15,11 +15,11 @@
 
 .sidebar h4 {
   margin-top: 10px;
-    font-weight: bold;
-    cursor: pointer;
+  font-weight: bold;
+  cursor: pointer;
 }
 
-.sideicons .sideicon{
+.sideicons .sideicon {
   background-color: transparent !important;
   color: white;
   border: 2px solid;
@@ -42,6 +42,8 @@
   background-color: #1e1e1e !important; /* Dark card background */
   color: white !important; /* Light text */
   border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 /* Gradient Card Headers */
@@ -58,12 +60,16 @@
   background-color: #222;
   padding: 15px;
   border-radius: 10px;
+  text-align: center;
 }
 
 /* Buttons */
 #buybtn {
   background: linear-gradient(90deg, #007bff, #ff416c);
   border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 16px;
 }
 
 #buybtn:hover {
@@ -77,9 +83,25 @@
 
 .custom-calendar {
   background: #222;
-  padding: 10px;
+  padding: 15px;
   border-radius: 8px;
   color: white;
+  width: 100%;  /* Ensure it takes full width */
+  max-width: 320px;
+  text-align: center;
+  letter-spacing: normal;
+  word-spacing: normal;
+  font-size: 14px;
+}
+
+.calendar-container {
+  display: flex;
+  justify-content: center;
+}
+
+.calendar td {
+  padding: 5px;
+  min-width: 30px;
 }
 
 /* List Items */
@@ -98,9 +120,10 @@
   background-color: #1e1e1e;
   border-radius: 10px;
 }
+
 /* Profile Container */
 .profile-container {
-  background-color: #000000; /* Light grey background */
+  background-color: #000000;
   padding: 15px;
   border-radius: 10px;
   text-align: center;
@@ -121,4 +144,11 @@
   width: 100%;
   height: 100%;
   object-fit: cover; /* Prevent distortion */
+}
+
+/* Layout Improvements */
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; /* Adjust spacing between sections */
 }

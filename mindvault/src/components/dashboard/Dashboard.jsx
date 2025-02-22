@@ -50,13 +50,7 @@ const Dashboard = () => {
                   >
                     <Card.Body>
                       <Card.Title>{subject}</Card.Title>
-                      {/* <Card.Text>📁 {10 + idx * 2} Flashcards</Card.Text>
-                      <Card.Text>📁 {10 + idx * 2} Quizzes</Card.Text> */}
-        
-                      {/* <Card.Text>
-                        👨‍🏫 Teacher:{" "}
-                        {idx === 0 ? "Anshika Saxena" : "Mishthi Sachdeva" }
-                      </Card.Text> */}
+                      
                     </Card.Body>
                   </Card>
                 </Col>
