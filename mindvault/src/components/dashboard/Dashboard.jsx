@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Row, Col, Card, Button, ListGroup } from "react-bootstrap";
+import { Container, Row, Col, Card, Button, ListGroup, ListGroupItem } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
@@ -96,9 +96,8 @@ const Dashboard = () => {
           <Card className="mt-3 p-3">
             <h6>🔔 Reminders</h6>
             <ListGroup>
-              <ListGroup.Item>📖 Data Structures Test</ListGroup.Item>
-              <ListGroup.Item>✍️ OOPs - Assignment</ListGroup.Item>
-              <ListGroup.Item>🗣️ DBMS Viva</ListGroup.Item>
+              <ListGroup.Item>Today's Quiz❓</ListGroup.Item>
+              <ListGroup.Item>Revise Flashcards📒</ListGroup.Item>
             </ListGroup>
           </Card>
         </Col>
