@@ -5,6 +5,7 @@ from transformers import Trainer, TrainingArguments
 from transformers import AutoTokenizer
 from transformers import DataCollatorWithPadding
 from torch.utils.data import DataLoader
+from datasets import DatasetDict
 
 # Load dataset
 dataset = load_dataset("squad", split="train")
@@ -36,6 +37,16 @@ training_args = TrainingArguments(
     remove_unused_columns=False 
 )
 data_collator = DataCollatorWithPadding(tokenizer=tokenizer)
+
+
+# Split dataset into 90% training, 10% evaluation
+dataset = dataset.train_test_split(test_size=0.1)
+
+# Extract training and evaluation datasets
+train_dataset = dataset["train"]
+eval_dataset = dataset["test"]
+
+print(train_dataset, eval_dataset)
 
 
 trainer = Trainer(
