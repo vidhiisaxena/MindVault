@@ -1,9 +1,0 @@
-transformers
-datasets
-torch
-nltk
-fastapi
-uvicorn
-scikit-learn
-numpy
-pandas
