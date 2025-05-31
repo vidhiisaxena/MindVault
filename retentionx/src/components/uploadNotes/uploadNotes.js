@@ -41,8 +41,24 @@ const UploadPage = () => {
     }, []);
 
     const handleFileChange = (event) => {
-        setSelectedFile(event.target.files[0]);
-        setProgress(0);
+         const file = event.target.files[0];
+    if (!file) return;
+
+    const allowedTypes = [
+        "application/pdf",
+        "application/msword", // .doc
+        "application/vnd.openxmlformats-officedocument.wordprocessingml.document" // .docx
+    ];
+
+    if (!allowedTypes.includes(file.type)) {
+        alert("Please upload a PDF or Word document (.pdf, .doc, .docx) only.");
+        event.target.value = null; // Clear the input
+        setSelectedFile(null);
+        return;
+    }
+
+    setSelectedFile(file);
+    setProgress(0);
     };
 
     const handleUpload = async () => {
@@ -194,7 +210,7 @@ const UploadPage = () => {
                 <Modal.Body className="upload-modal">
                     <h4>Upload Your Notes</h4>
                     <p>Select and upload your notes for flashcard generation.</p>
-                    <input type="file" className="upload-input" onChange={handleFileChange} />
+                    <input type="file" className="upload-input" accept=".pdf,.doc,.docx" onChange={handleFileChange} />
                     {progress > 0 && <ProgressBar now={progress} label={`${progress}%`} />}
                     <Form.Select className="mt-3" value={tag} onChange={(e) => setTag(e.target.value)}>
                         <option value="">-- Select a Subject --</option>
