@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { BrowserProvider, Contract, formatUnits } from "ethers";
 import MEMOXTokenABI from "../../abi/MEMOXToken.json";
 import './signup.css';
+import { FaGoogle, FaGithub, FaLinkedin } from 'react-icons/fa';
 
 export default function SignUpPage() {
   const tiltRef = useRef(null);
@@ -38,7 +39,7 @@ export default function SignUpPage() {
       return;
     }
 
-    // Dummy check (replace with real backend check)
+    // Dummy credentials for testing (replace with backend auth)
     if (email === "Advika_Singhal" && password === "password") {
       localStorage.setItem("username", email);
 
@@ -76,15 +77,11 @@ export default function SignUpPage() {
         }
       } catch (error) {
         console.error("Login or token credit failed:", error);
-        alert("Error during login or token distribution.");
+        alert("Error: " + error.message);
       }
     } else {
       alert("Invalid credentials");
     }
-  };
-
-  const handleOAuthLogin = (provider) => {
-    alert(`OAuth with ${provider} coming soon!`);
   };
 
   return (
@@ -97,18 +94,43 @@ export default function SignUpPage() {
           </div>
           <div className="elements content">
             <form onSubmit={handleLogin}>
-              <input type="text" placeholder="Full Name" value={fullName} onChange={(e) => setFullName(e.target.value)} />
-              <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
-              <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
-              <input type="password" placeholder="Confirm Password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
-              <button type="submit">Sign Up</button>
-              <div className="divider">or sign up with</div>
-              <div className="social-buttons">
-                <img src="/images/icons/google.png" alt="Google" width= "30px" onClick={() => handleOAuthLogin("Google")} />
-                <img src="/images/icons/github.png" alt="GitHub" width= "30px" onClick={() => handleOAuthLogin("GitHub")} />
-                <img src="/images/icons/linkedin.png" alt="LinkedIn" width= "30px" onClick={() => handleOAuthLogin("LinkedIn")} />
-              </div>
+              <input
+                type="text"
+                placeholder="Full Name"
+                value={fullName}
+                onChange={(e) => setFullName(e.target.value)}
+              />
+              <input
+                type="text"
+                placeholder="Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              <input
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <input
+                type="password"
+                placeholder="Confirm Password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+              />
+              <button className="login" type="submit">
+                Sign Up
+              </button>
+              
+              <p className="signup-or">or sign up with</p>
+            <div className="signup-socials">
+              <FaGoogle className="social-icon" />
+              <FaGithub className="social-icon" />
+              <FaLinkedin className="social-icon" />
+            </div>
             </form>
+
+            
           </div>
           <div className="card"></div>
         </div>

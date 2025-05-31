@@ -3,7 +3,7 @@ import VanillaTilt from "vanilla-tilt";
 import { useNavigate } from "react-router-dom";
 import { BrowserProvider, Contract, formatUnits } from "ethers";
 import MEMOXTokenABI from "../../abi/MEMOXToken.json";
-import "../signup/signup";
+import "./signin.css";
 
 export default function SignInPage() {
   const tiltRef = useRef(null);
@@ -73,7 +73,7 @@ export default function SignInPage() {
   };
 
   return (
-    <div className="login-page">
+    <div className="signin-page">
       <div className="login-container">
         <div ref={tiltRef} className="box">
           <div className="elements logo"></div>
@@ -99,9 +99,6 @@ export default function SignInPage() {
               </button>
             </form>
           </div>
-          <p style={{ marginTop: "10px", fontSize: "12px" }}>
-  Don't have an account? <span style={{ color: "#00bfff", cursor: "pointer" }} onClick={() => navigate("/signup")}>Sign Up</span>
-</p>
 
           <div className="card"></div>
         </div>
