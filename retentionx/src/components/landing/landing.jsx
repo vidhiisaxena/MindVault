@@ -26,10 +26,10 @@ export default function LandingPage() {
             <Button href="/Dashboard" type="button" id="navbtn" className="btn btn-outline-secondary">
               Dashboard
             </Button>
-            <Button href="/login" type="button" id="navbtn" className="btn btn-outline-secondary">
+            <Button href="/signin" type="button" id="navbtn" className="btn btn-outline-secondary">
               Sign in
             </Button>
-            <Button href="/login" type="button" id="navbtn" className="btn btn-outline-secondary">
+            <Button href="/signup" type="button" id="navbtn" className="btn btn-outline-secondary">
               Sign up
             </Button>
           </Nav>

@@ -1,7 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import LandingPage from "./components/landing/landing";
-import LoginPage from "./components/signup/login"; 
+import SignUpPage from "./components/signup/signup"; 
+import SignInPage from "./components/signin/signin";
 import Dashboard from "./components/dashboard/Dashboard";
 import FlashcardList from "./components/flashcard/flashcardlist";
 import Quiz from "./components/quiz/Quiz";
@@ -17,7 +18,8 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/login" element={<LoginPage />} />
+        <Route path="/signup" element={<SignUpPage />} />
+        <Route path="/signin" element={<SignInPage />} />
         <Route path="/" element={<LandingPage />} />
         <Route path="/Dashboard" element={<Dashboard/>}/>
         <Route path="/flashcardlist" element={<FlashcardList />} />

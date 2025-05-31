@@ -11,6 +11,7 @@
   .pomodoro-box {
     flex: 1;
     text-align: center;
+    margin-left: 350px;
     padding: 30px;
     background: rgba(255, 255, 255, 0.1); /* Transparent White */
     backdrop-filter: blur(10px); /* Glass Blur Effect */

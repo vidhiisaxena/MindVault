@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import PomodoroCharacter from "./PomodoroCharacter";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Sidebar from "../sidebar/sidebar";
 import "./PomodoroStyles.css"; // Custom Dark Theme Styles
 
 const PomodoroTimer = () => {
@@ -61,6 +62,7 @@ const PomodoroTimer = () => {
 
   return (
     <div className="pomodoro-container">
+      < Sidebar />
       <div className="pomodoro-box">
         <h1 className="session-title">{session}</h1>
         <div className="timer-display">{formatTime(time)}</div>

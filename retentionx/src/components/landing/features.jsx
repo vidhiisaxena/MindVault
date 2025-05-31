@@ -28,6 +28,11 @@ const data = [
     title: "Progress Analytics",
     subtitle: "Track and Improve",
     content: "Keep an eye on your learning journey with cool analytics that show off your strengths and where you can level up! 📈🚀"
+  },
+  {
+    title: "MEMOX Tokens",
+    subtitle: "Why just learn when you can earn?",
+    content: "Whether it’s unlocking perks, climbing the leaderboard, or just vibing with your progress - MEMOX is your reward for showing up and putting in work.🪙💸"
   }
 ];
 
