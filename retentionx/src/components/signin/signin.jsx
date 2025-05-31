@@ -27,7 +27,8 @@ export default function SignInPage() {
     e.preventDefault();
 
     if (email === "Advika_Singhal" && password === "password") {
-      localStorage.setItem("username", email);
+      localStorage.setItem("username", "Advika Singhal"); // Replace with fetched full name in real app
+      localStorage.setItem("email", email);
 
       try {
         if (!window.ethereum) {

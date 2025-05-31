@@ -41,7 +41,8 @@ export default function SignUpPage() {
 
     // Dummy credentials for testing (replace with backend auth)
     if (email === "Advika_Singhal" && password === "password") {
-      localStorage.setItem("username", email);
+      localStorage.setItem("username", fullName);
+      localStorage.setItem("email", email);
 
       try {
         if (!window.ethereum) {

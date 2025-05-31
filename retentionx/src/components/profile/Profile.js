@@ -9,13 +9,17 @@ import Sidebar from "../sidebar/sidebar";
 
 const Profile = () => {
   const username = localStorage.getItem("username");
+  const userEmail = localStorage.getItem("email");
   const [savedPhoneNumber, setSavedPhoneNumber] = useState("");
   const navigate = useNavigate();
+  const [isEditingBio, setIsEditingBio] = useState(false);
+  const [bioText, setBioText] = useState("");
+
 
   const user = {
-    email: 'advika@example.com',
+    email: userEmail || "user@example.com", // fallback
     avatar: `${process.env.PUBLIC_URL}/images/avatar.jpg`,
-    bio: 'Frontend Developer | Blockchain Explorer | Tech Mentor @ IGDTUW',
+    bio: bioText,
     phone: savedPhoneNumber 
   };
 
@@ -112,24 +116,74 @@ const Profile = () => {
     }
   }, []);
 
+  useEffect(() => {
+  const savedBio = localStorage.getItem("userBio");
+  if (savedBio) {
+    setBioText(savedBio);
+  }
+}, []);
+
   return (
     <div className="profile-page">
       <Sidebar />
       <Container className="profile-wrapper">
         <Card className="profile-card p-4 mb-4">
-          <div className="profile-header d-flex align-items-center">
-            <img src={user.avatar} alt="Profile" className="profile-avatar me-4" />
-            <div className="profile-info">
-              <h2 className="profile-name mb-1">{username}</h2>
-              <p className="profile-bio">{user.bio}</p>
-              <p className="profile-email">{user.email}</p>
-              <p className="profile-phone">📱 {user.phone}</p>
-              <button onClick={handleLogout} className="btn btn-outline-danger mt-3">
-                Logout
-              </button>
-            </div>
+  <div className="profile-header d-flex align-items-center">
+    <img src={user.avatar} alt="Profile" className="profile-avatar me-4" />
+
+    <div className="profile-info">
+      <h2 className="profile-name mb-1">{username}</h2>
+
+      {isEditingBio ? (
+        <>
+          <textarea
+            className="form-control mb-2"
+            rows={3}
+            value={bioText}
+            onChange={(e) => setBioText(e.target.value)}
+          />
+          <div className="mb-2 d-flex gap-2">
+            <button
+              className="btn btn-success btn-sm"
+              onClick={() => {
+                localStorage.setItem("userBio", bioText);
+                setIsEditingBio(false);
+              }}
+            >
+              Save
+            </button>
+            <button
+              className="btn btn-secondary btn-sm"
+              onClick={() => {
+                setBioText(user.bio);
+                setIsEditingBio(false);
+              }}
+            >
+              Cancel
+            </button>
           </div>
-        </Card>
+        </>
+      ) : (
+        <>
+          <p className="profile-bio">{user.bio || "No bio available."}</p>
+          <button
+            className="btn btn-outline-primary btn-sm mb-2"
+            onClick={() => setIsEditingBio(true)}
+          >
+            Edit Bio
+          </button>
+        </>
+      )}
+
+      <p className="profile-email mb-1">{user.email}</p>
+      <p className="profile-phone mb-1">📱 {user.phone}</p>
+
+      <button onClick={handleLogout} className="btn btn-outline-danger mt-3">
+        Logout
+      </button>
+    </div>
+  </div>
+</Card>
 
         <Row className="mb-4 profile-stats">
           <Col md={4}><Card className="p-3 stat-card"><h5>Total Uploads</h5><p>{totalUploads}</p></Card></Col>
