@@ -79,7 +79,7 @@ export default function SignInPage() {
         <div ref={tiltRef} className="box">
           <div className="elements logo"></div>
           <div className="elements name">
-            <h2>Sign In</h2>
+            <h2>SIGN IN</h2>
           </div>
           <div className="elements content">
             <form onSubmit={handleLogin}>
@@ -95,6 +95,11 @@ export default function SignInPage() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
+
+              {/* Forgot Password Link */}
+              <div className="forgot-password">
+                <a href="/forgot-password">Forgot Password?</a>
+              </div>
               <button className="login" type="submit">
                 Sign In
               </button>

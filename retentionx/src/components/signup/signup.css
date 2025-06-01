@@ -35,8 +35,8 @@
 .login-page .box .card {
   position: relative;
   background: rgba(255, 255, 255, 0.1);
-  width: 460px;
-  min-height: 560px;
+  width: 400px;
+  min-height: 500px;
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.5);
   border-top: 1px solid rgba(255, 255, 255, 0.75);
@@ -64,9 +64,9 @@
 
 /* Title */
 .login-page .elements.name {
-  top: 75px;
+  top: 65px;
   left: initial;
-  right: 140px;
+  right: 110px;
   width: 150px;
   padding: 10px;
   text-align: center;
@@ -91,12 +91,12 @@
 
 /* Content Box */
 .login-page .elements.content {
-  top: 180px;
+  top: 150px;
   left: initial;
-  bottom: 0px;
-  right: 85px;
+  bottom: 30px;
+  right: 75px;
   width: 60%;
-  min-height: 340px;
+  min-height: 315px;
   padding: 10px;
   transform: translateZ(180px);
   text-align: center;
@@ -108,25 +108,25 @@
 /* Input */
 .login-page input {
   background: transparent;
-  padding-bottom: 10px;
+  padding-bottom: 5px;
   padding-left: 5px;
-  margin-bottom: 10px;
+  margin-bottom: 7px;
   outline: none;
   color: #fff;
   /* border: none; */
-  font-size: 0.9em;
+  font-size: 1em;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   border: 1px solid rgba(255, 255, 255, 0.5);
   border-top: 1px solid rgb(255, 255, 255, 0.75);
   border-left: 1px solid rgb(255, 255, 255, 0.75);
   border-radius: 10px;
-  width: 90%;
+  width: 100%;
 }
 
 /* Placeholder */
 .login-page ::placeholder {
   color: rgb(181, 177, 177);
-  font-size: 13px;
+  font-size: 10px;
   padding-left: 5px;
 }
 
@@ -135,8 +135,8 @@
   margin-top: 10px;
   background-color: transparent;
   color: white;
-  padding: 10px 0;
-  font-size: 15px;
+  padding: 5px 0;
+  font-size: 12px;
   font-weight: 600;
   border-radius: 5px;
   cursor: pointer;
@@ -144,7 +144,7 @@
   border-top: 1px solid rgb(255, 255, 255, 0.75);
   border-left: 1px solid rgb(255, 255, 255, 0.75);
   border-radius: 10px;
-  width: 90%;
+  width: 100%;
 }
 
 .login-page button:hover {
@@ -155,7 +155,7 @@
 }
 
 .login-page .signup-or {
-  margin-top: 20px;
+  margin-top: 7px;
   color: #aaa;
   font-size: 14px;
 }
@@ -164,7 +164,7 @@
   display: flex;
   justify-content: center;
   gap: 20px;
-  margin-top: 10px;
+  margin-top: 7px;
 }
 
 .login-page .social-icon {
@@ -177,4 +177,19 @@
 
 .login-page .social-icon:hover {
   color: #8f8698;
+}
+
+.already-account {
+  margin-top: 0.1rem;
+  font-size: 0.9rem;
+  text-align: center;
+  color: #706f6f;
+  font-weight: 600;
+}
+
+.signin-link {
+  color: #8898a9;
+  text-decoration: none;
+  cursor: pointer;
+  font-weight: 600;
 }

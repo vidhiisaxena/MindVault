@@ -91,7 +91,7 @@ export default function SignUpPage() {
         <div ref={tiltRef} className="box">
           <div className="elements logo"></div>
           <div className="elements name">
-            <h2>Sign Up</h2>
+            <h2>SIGN UP</h2>
           </div>
           <div className="elements content">
             <form onSubmit={handleLogin}>
@@ -129,9 +129,17 @@ export default function SignUpPage() {
               <FaGithub className="social-icon" />
               <FaLinkedin className="social-icon" />
             </div>
+            <p className="already-account">
+  Already have an account?{" "}
+  <span 
+    className="signin-link" 
+    onClick={() => navigate("/signin")}  >
+    Sign in
+  </span>
+</p>
+
             </form>
 
-            
           </div>
           <div className="card"></div>
         </div>
