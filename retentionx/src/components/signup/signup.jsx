@@ -1,8 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import VanillaTilt from "vanilla-tilt";
 import { useNavigate } from "react-router-dom";
-import { BrowserProvider, Contract, formatUnits } from "ethers";
-import MEMOXTokenABI from "../../abi/MEMOXToken.json";
 import './signup.css';
 import { FaGoogle, FaGithub, FaLinkedin } from 'react-icons/fa';
 
@@ -13,8 +11,6 @@ export default function SignUpPage() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [fullName, setFullName] = useState("");
   const navigate = useNavigate();
-
-  const MEMOX_CONTRACT_ADDRESS = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
 
   useEffect(() => {
     if (tiltRef.current) {
@@ -43,44 +39,10 @@ export default function SignUpPage() {
     if (email === "Advika_Singhal" && password === "password") {
       localStorage.setItem("username", fullName);
       localStorage.setItem("email", email);
-
-      try {
-        if (!window.ethereum) {
-          alert("MetaMask not found!");
-          return;
-        }
-
-        await window.ethereum.request({ method: "eth_requestAccounts" });
-        const provider = new BrowserProvider(window.ethereum);
-        const signer = await provider.getSigner();
-        const userAddress = await signer.getAddress();
-
-        const res = await fetch("http://localhost:3001/distribute-memox", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ toAddress: userAddress }),
-        });
-
-        const data = await res.json();
-        if (data.success) {
-          const memoxContract = new Contract(
-            MEMOX_CONTRACT_ADDRESS,
-            MEMOXTokenABI.abi,
-            signer
-          );
-
-          const updatedBalance = await memoxContract.balanceOf(userAddress);
-          const formattedBalance = formatUnits(updatedBalance, 18);
-          localStorage.setItem("memoxBalance", formattedBalance);
+      
           navigate("/dashboard");
-        } else {
-          alert("Token transfer failed");
-        }
-      } catch (error) {
-        console.error("Login or token credit failed:", error);
-        alert("Error: " + error.message);
-      }
-    } else {
+    }
+       else {
       alert("Invalid credentials");
     }
   };

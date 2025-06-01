@@ -1,8 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import VanillaTilt from "vanilla-tilt";
 import { useNavigate } from "react-router-dom";
-import { BrowserProvider, Contract, formatUnits } from "ethers";
-import MEMOXTokenABI from "../../abi/MEMOXToken.json";
 import "./signin.css";
 
 export default function SignInPage() {
@@ -21,8 +19,6 @@ export default function SignInPage() {
     }
   }, []);
 
-  const MEMOX_CONTRACT_ADDRESS = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
-
   const handleLogin = async (e) => {
     e.preventDefault();
 
@@ -30,45 +26,22 @@ export default function SignInPage() {
       localStorage.setItem("username", "Advika Singhal"); // Replace with fetched full name in real app
       localStorage.setItem("email", email);
 
-      try {
-        if (!window.ethereum) {
-          alert("MetaMask not found!");
-          return;
-        }
+    // Grant 10 MEMOX once per day
+    const today = new Date().toISOString().split("T")[0]; // e.g., "2025-05-31"
+    const lastLoginDate = localStorage.getItem("lastLoginDate");
 
-        await window.ethereum.request({ method: "eth_requestAccounts" });
-        const provider = new BrowserProvider(window.ethereum);
-        const signer = await provider.getSigner();
-        const userAddress = await signer.getAddress();
-
-        const res = await fetch("http://localhost:3001/distribute-memox", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ toAddress: userAddress }),
-        });
-
-        const data = await res.json();
-        if (data.success) {
-          console.log("MEMOX Credited! Tx:", data.txHash);
-
-          const memoxContract = new Contract(
-            MEMOX_CONTRACT_ADDRESS,
-            MEMOXTokenABI.abi,
-            signer
-          );
-          const updatedBalance = await memoxContract.balanceOf(userAddress);
-          const formattedBalance = formatUnits(updatedBalance, 18);
-          localStorage.setItem("memoxBalance", formattedBalance);
+    if (lastLoginDate !== today) {
+      const currentTokens = parseInt(localStorage.getItem("memoxTokens")) || 0;
+      localStorage.setItem("memoxTokens", currentTokens + 10);
+      localStorage.setItem("lastLoginDate", today);
+      console.log("🎉 10 MEMOX granted for daily login!");
+    } else {
+      console.log("🕒 Already logged in today. No extra MEMOX granted.");
+    }
+    console.log("Current tokens:", localStorage.getItem("memoxTokens"));
 
           navigate("/dashboard");
         } else {
-          alert("Token transfer failed");
-        }
-      } catch (error) {
-        console.error("Login or token credit failed:", error);
-        alert("Error during login or token distribution.");
-      }
-    } else {
       alert("Invalid credentials");
     }
   };
