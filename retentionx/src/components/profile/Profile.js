@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Container, Row, Col, Card, Badge } from 'react-bootstrap';
 import './Profile.css';
 import Sidebar from "../sidebar/sidebar";
@@ -12,6 +12,7 @@ const Profile = () => {
   const navigate = useNavigate();
   const [isEditingBio, setIsEditingBio] = useState(false);
   const [bioText, setBioText] = useState("");
+  const location = useLocation();
 
   const user = {
     email: userEmail || "user@example.com", // fallback
@@ -51,14 +52,17 @@ const Profile = () => {
     const savedBio = localStorage.getItem("userBio");
     if (savedBio) setBioText(savedBio);
 
-    const savedTokens = parseInt(localStorage.getItem("memoxTokens")) || 0;
-    setMemoxBalance(savedTokens);
   }, []);
 
-  // Save balance to localStorage whenever it changes
   useEffect(() => {
-    localStorage.setItem("memoxTokens", memoxBalance.toString());
-  }, [memoxBalance]);
+  if (location.state?.newTokens) {
+    setMemoxBalance(location.state.newTokens);
+    localStorage.setItem("memoxTokens", location.state.newTokens.toString());
+  } else {
+    const savedTokens = parseInt(localStorage.getItem("memoxTokens")) || 0;
+    setMemoxBalance(savedTokens);
+  }
+}, [location.state]);
 
   const rewardTokens = (amount) => setMemoxBalance((prev) => prev + amount);
   const redeemTokens = (amount) => {

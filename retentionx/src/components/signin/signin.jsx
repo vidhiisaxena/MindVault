@@ -8,6 +8,7 @@ export default function SignInPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const [error, setError] = useState("");
 
   useEffect(() => {
     if (tiltRef.current) {
@@ -29,20 +30,25 @@ export default function SignInPage() {
     // Grant 10 MEMOX once per day
     const today = new Date().toISOString().split("T")[0]; // e.g., "2025-05-31"
     const lastLoginDate = localStorage.getItem("lastLoginDate");
+    let currentTokens = parseInt(localStorage.getItem("memoxTokens")) || 0;
 
     if (lastLoginDate !== today) {
-      const currentTokens = parseInt(localStorage.getItem("memoxTokens")) || 0;
-      localStorage.setItem("memoxTokens", currentTokens + 10);
+      currentTokens += 10;
+      localStorage.setItem("memoxTokens", currentTokens);
       localStorage.setItem("lastLoginDate", today);
-      console.log("🎉 10 MEMOX granted for daily login!");
+      alert("🎉 10 MEMOX granted for daily login!");
     } else {
-      console.log("🕒 Already logged in today. No extra MEMOX granted.");
+      alert("🕒 Already logged in today. No extra MEMOX granted.");
     }
-    console.log("Current tokens:", localStorage.getItem("memoxTokens"));
+    console.log("Current tokens:", currentTokens);
 
-          navigate("/dashboard");
-        } else {
-      alert("Invalid credentials");
+    navigate("/dashboard", {
+      state: {
+        newTokens: currentTokens,
+      },
+    });
+    } else {
+      setError("Invalid credentials");
     }
   };
 
@@ -58,13 +64,15 @@ export default function SignInPage() {
             <form onSubmit={handleLogin}>
               <input
                 type="text"
-                placeholder="email"
+                placeholder="Email"
+                required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
               <input
                 type="password"
-                placeholder="password"
+                placeholder="Password"
+                required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
@@ -77,6 +85,7 @@ export default function SignInPage() {
                 Sign In
               </button>
             </form>
+            {error && <p className="error-message">{error}</p>}
           </div>
 
           <div className="card"></div>
