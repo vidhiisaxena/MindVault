@@ -200,11 +200,14 @@ const UploadPage = () => {
 
     return (
         <div className="upload-page">
-            <Sidebar />
-            <Button className="open-modal-btn" onClick={() => setShowModal(true)}>📤 Upload Notes</Button>
-            <Button className="open-modal-btn" onClick={() => navigate("/reviseNotes")}>✍🏻 Revise previous Notes</Button>
-            <Button className="open-modal-btn" onClick={() => setShowYoutubeModal(true)}>🎥 Upload YouTube Lecture</Button>
-
+            <div className="upload-container">
+                <Sidebar />
+                <div className="upload-actions">
+                    <Button className="open-modal-btn" onClick={() => setShowModal(true)}>📤 Upload Notes</Button>
+                    <Button className="open-modal-btn" onClick={() => navigate("/reviseNotes")}>✍🏻 Revise Notes</Button>
+                    <Button className="open-modal-btn" onClick={() => setShowYoutubeModal(true)}>🎥 Upload YouTube</Button>
+                </div>
+            </div>
             {/* Upload PDF Modal */}
             <Modal show={showModal} onHide={() => setShowModal(false)} centered>
                 <Modal.Body className="upload-modal">
