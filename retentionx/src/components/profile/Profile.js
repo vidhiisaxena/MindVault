@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Container, Row, Col, Card, Badge } from 'react-bootstrap';
+import { Tooltip } from 'react-tooltip';
 import './Profile.css';
 import Sidebar from "../sidebar/sidebar";
 
@@ -141,7 +142,8 @@ const Profile = () => {
         </Row>
 
         <Card className="p-4 mb-4">
-  <h2 className="section-heading">Consistency Grid</h2>
+  <h2 className="section-heading" data-tooltip-id="consistency" data-tooltip-content="Tracks how consistently you study.">Consistency Grid</h2>
+  <Tooltip id="consistency" />
   <div className="consistency-grid">
     {Array.from({ length: 140 }, (_, i) => (
       <div
@@ -169,7 +171,8 @@ const Profile = () => {
 
         {/* MEMOX Token Section */}
         <Card className="p-4 memox mb-4">
-          <h5>🪙 MEMOX Token Dashboard</h5>
+          <h5 data-tooltip-id='token' data-tooltip-content="View your MEMOX tokens.">🪙 MEMOX Token Dashboard</h5>
+          <Tooltip id="token" />
           <p><strong>MEMOX Balance:</strong> {memoxBalance} tokens</p>
 
           <div className="d-flex gap-2">
